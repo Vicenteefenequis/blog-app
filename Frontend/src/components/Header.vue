@@ -8,11 +8,11 @@
         <div class="__menu d-flex justify-content-center align-items-center">
             <ul class="list-group list-group-horizontal-md">
                 <li class="list-group-item mr-2 rounded shadow">CARS</li>
-                <li class="list-group-item mr-2 rounded shadow">BIZ & TIZ</li>
                 <li class="list-group-item mr-2 rounded shadow" ><a href="/">HOME</a></li>
                 <li class="list-group-item mr-2 rounded shadow"><a href="/login">LOGIN</a></li>
+                <li class="list-group-item mr-2 rounded shadow"><a href="/register"> REGISTER </a></li>
                
-            </ul>+
+            </ul>
         </div>
     </div>
   </div>
