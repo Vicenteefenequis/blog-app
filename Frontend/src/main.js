@@ -1,28 +1,32 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VueRouter from 'vue-router';
-import Login from './components/Login'
-import AllContent from './components/AllContent'
-import Register from './components/Register'
-import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
+import Vue from 'vue';
+import App from './App.vue';
+import { router } from './router';
+import store from './store';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import VeeValidate from 'vee-validate';
+import Vuex from 'vuex';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  faHome,
+  faUser,
+  faUserPlus,
+  faSignInAlt,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons';
 
+library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
-Vue.use(VueSweetalert2)
-Vue.use(VueRouter)
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-const routes = [
-  {path: '/' , component: AllContent},
-  {path: '/login' , component: Login},
-  {path: '/register' , component: Register}
-];
-const router = new VueRouter({
-  routes,
-  mode:'history'
-})
+Vue.use(VeeValidate);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.use(Vuex);
 
 new Vue({
-  render: h => h(App),
   router,
-}).$mount('#app')
+  store,
+  render: h => h(App)
+}).$mount('#app');
