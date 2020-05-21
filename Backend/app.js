@@ -4,6 +4,10 @@ require('dotenv').config();
 const userRouter = require('./routes/userRouter')
 const adminRouter = require('./routes/adminRouter')
 const mongoose = require('mongoose')
+var cors = require('cors')
+
+
+app.use(cors())
 
 
 mongoose.connect(process.env.MONGO_CONNECTION_URL,

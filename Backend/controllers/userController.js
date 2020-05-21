@@ -9,11 +9,12 @@ const userController = {
         const {err} = registerValidate(req.body)
         if(err){ return res.status(400).send(error.message)}
         const selectedUser = await User.findOne({email:req.body.email})
+        const salt = await bcrypt.genSaltSync(10);
         if(selectedUser) return res.status(400).send('Email or Password Incorrect')
         const user = new User({
             name: req.body.name,
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password)
+            password: bcrypt.hashSync(req.body.password,salt)
         })
         try {
             const savedUser = await user.save()
@@ -25,15 +26,17 @@ const userController = {
     login:async function (req,res){
         const {err} = loginValidate(req.body)
         if(err){ return res.status(400).send(error.message)}
+      
         const selectedUser = await User.findOne({email:req.body.email})
         if(!selectedUser) return res.status(400).send('Email or Password Incorrect')
 
-        const passwordAndUserMatch = bcrypt.compareSync(req.body.password,selectedUser.password)
+     
+        const passwordAndUserMatch = await bcrypt.compareSync(req.body.password,selectedUser.password)
         if(!passwordAndUserMatch) return res.status(400).send('Email or Password Incorrect')
 
         const token = jwt.sign({_id:selectedUser._id,admin: selectedUser.admin},process.env.TOKEN_SECRET)
-
-        res.header('authorization-token',token)
+        {expiresIn: '1d'}
+        res.json({token})
         res.send('User Logged')
 
     }
