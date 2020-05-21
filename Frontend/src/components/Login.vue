@@ -16,22 +16,23 @@
 
 <script>
 import {api} from '../../services/config'
+
 export default {
 
     data(){
         return{
             email: '',
             senha: '',
-            loading: false
         }
     },
     methods :{
         async postUser(){
             await api.post('/user/login',{email:this.email,password:this.senha})
             .then(response => {
-                if(response.status === 200){
-                    this.loading = true;
-                }
+                    this.$router.push('/')
+                    this.$swal('Logged!!');    
+                    localStorage.setItem('token',response.data.token)
+                
             })
             .catch(err=>{
                 throw new Error(err)

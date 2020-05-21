@@ -11,7 +11,6 @@
                 <li class="list-group-item mr-2 rounded shadow" ><a href="/">HOME</a></li>
                 <li class="list-group-item mr-2 rounded shadow"><a href="/login">LOGIN</a></li>
                 <li class="list-group-item mr-2 rounded shadow"><a href="/register"> REGISTER </a></li>
-               
             </ul>
         </div>
     </div>

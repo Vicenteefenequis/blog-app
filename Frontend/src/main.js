@@ -4,7 +4,11 @@ import VueRouter from 'vue-router';
 import Login from './components/Login'
 import AllContent from './components/AllContent'
 import Register from './components/Register'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
+
+Vue.use(VueSweetalert2)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
@@ -12,7 +16,6 @@ const routes = [
   {path: '/' , component: AllContent},
   {path: '/login' , component: Login},
   {path: '/register' , component: Register}
-  
 ];
 const router = new VueRouter({
   routes,
