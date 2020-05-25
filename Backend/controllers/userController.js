@@ -9,6 +9,7 @@ const userController = {
         const {err} = registerValidate(req.body)
         if(err){ return res.status(400).send(error.message)}
         const selectedUser = await User.findOne({email:req.body.email})
+        console.log(selectedUser)
         const salt = await bcrypt.genSaltSync(10);
         if(selectedUser) return res.status(400).send('Email or Password Incorrect')
         const user = new User({
@@ -34,10 +35,18 @@ const userController = {
         const passwordAndUserMatch = await bcrypt.compareSync(req.body.password,selectedUser.password)
         if(!passwordAndUserMatch) return res.status(400).send('Email or Password Incorrect')
 
-        const token = jwt.sign({_id:selectedUser._id,admin: selectedUser.admin},process.env.TOKEN_SECRET)
-        {expiresIn: '1d'}
-        res.json({token})
-        res.send('User Logged')
+        const token = jwt.sign({_id:selectedUser._id,admin: selectedUser.admin},process.env.TOKEN_SECRET,{expiresIn: 86400})
+        res.header('x-access-token',token)
+       
+        res.send({
+            id: selectedUser._id,
+            name: selectedUser.name,
+            email: selectedUser.email,
+            accessToken: token,
+            roles:  selectedUser.admin ? "ROLE_ADMIN" : "ROLE_USER"
+        })
+      
+
 
     }
 }
