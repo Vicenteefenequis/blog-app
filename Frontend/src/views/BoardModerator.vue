@@ -20,6 +20,7 @@ export default {
     UserService.getModeratorBoard().then(
       response => {
         this.content = response.data;
+ 
       },
       error => {
         this.content =

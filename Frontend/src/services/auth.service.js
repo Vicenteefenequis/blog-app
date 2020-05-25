@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/user/';
+const API_URL = 'http://localhost:3000/';
 
 class AuthService {
   login(user) {
     return axios
-      .post(API_URL + 'login', {
+      .post(API_URL +'user/' + 'login', {
         email: user.email,
         password: user.password
       })
@@ -13,7 +13,6 @@ class AuthService {
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data));
         }
-
         return response.data;
       });
   }
@@ -23,11 +22,20 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL + 'register', {
+    return axios.post(API_URL + 'user/' + 'register', {
       name: user.username,
       email: user.email,
       password: user.password
     });
+  }
+  registerpost(user){
+    return axios.post(API_URL + 'admin',{
+      title: user.title,
+      description: user.description,
+      autor: user.autor,
+      imagem: user.imagem,
+      admin: user.admin
+    })
   }
 }
 

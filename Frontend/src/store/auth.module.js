@@ -36,6 +36,18 @@ export const auth = {
           return Promise.reject(error);
         }
       );
+    },
+    registerposts({ commit }, user) {
+      return AuthService.registerpost(user).then(
+        response => {
+          commit('registerSuccess');
+          return Promise.resolve(response.data);
+        },
+        error => {
+          commit('registerFailure');
+          return Promise.reject(error);
+        }
+      );
     }
   },
   mutations: {
@@ -56,6 +68,8 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
-    }
+    },
+
+
   }
 };

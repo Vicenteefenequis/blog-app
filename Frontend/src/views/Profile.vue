@@ -19,7 +19,7 @@
     </p>
     <strong>Authorities:</strong>
     <ul>
-      <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li>
+      <p class="d-inline" v-for="(role,index) in currentUser.roles" :key="index">{{role}}</p>
     </ul>
   </div>
 </template>
