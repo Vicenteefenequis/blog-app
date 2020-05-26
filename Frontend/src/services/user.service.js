@@ -7,7 +7,6 @@ class UserService {
   getPublicContent() {
     return axios.get(API_URL + 'admin');
   }
-
   getUserBoard() {
     return axios.get(API_URL + 'user', { headers: authHeader() });
   }

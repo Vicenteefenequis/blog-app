@@ -17,7 +17,6 @@ const adminpostController = {
         }
     },
     admin:async function(req,res){
-         
                 const selectedPost = await Postagem.find()    
                 if(!selectedPost) return res.status(400).send('Title not found')
                 return res.send(selectedPost)

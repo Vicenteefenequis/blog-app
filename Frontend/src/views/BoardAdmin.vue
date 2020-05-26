@@ -55,10 +55,14 @@
             >{{errors.first('password')}}</div>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Sign Up</button>
+            <button class="btn btn-primary btn-block">Mandar</button>
           </div>
         </div>
+       
       </form>
+      <div v-if="currentUser.roles === 'ROLE_USER'">
+        <h1 class="text-danger">ACCESS DENIED</h1>
+      </div>
 
       <div
         v-if="message"

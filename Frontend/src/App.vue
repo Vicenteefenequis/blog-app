@@ -66,13 +66,6 @@ export default {
 
       return false;
     },
-    showModeratorBoard() {
-      if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('ROLE_MODERATOR');
-      }
-
-      return false;
-    }
   },
   methods: {
     logOut() {
@@ -83,6 +76,3 @@ export default {
 };
 </script>
 
-<style>
-
-</style>

@@ -45,7 +45,6 @@ const userController = {
             accessToken: token,
             roles:  selectedUser.admin ? "ROLE_ADMIN" : "ROLE_USER"
         })
-      
 
 
     }
