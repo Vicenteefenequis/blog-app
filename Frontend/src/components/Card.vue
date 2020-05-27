@@ -1,4 +1,5 @@
 <template>
+
 <div class="__wrapper"> 
    <div v-for="contents in content" :key="contents._id" class="__card">
       <div class="card__header" :style="{ 'background-image': 'url(' + contents.imagem + ')' }">
@@ -9,7 +10,9 @@
         <p>{{contents.autor}}</p>
         <p>{{contents.createdAt.slice(0,10)}}</p>
       </div>
+      <a :href="'/post/' + contents._id">
       <button>Leia mais</button>
+      </a>
     </div>  
 </div>
 </template>
@@ -25,27 +28,33 @@ export default {
 </script>
 <style scoped>
 
+
 .__wrapper{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+display: grid;
+grid-template-columns: repeat(2,1fr);
+grid-gap: 12px;
 }
+
+
 
 
 .__card {
   position: relative;
-  width: 300px;
-  box-shadow: 0 0 56px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.2);
   margin: 50px 100px 0 2px;
   
 }
 
+
 .__card .card__header {
   position: relative;
-
+  transition: transform .5s ease;
   background-size: cover;
   background-repeat: no-repeat;
   height: 200px;
+}
+.__card .card__header:hover{
+  transform: scale(1.1);
 }
 
 .__card .card__header span {
