@@ -34,7 +34,8 @@ class AuthService {
       description: user.description,
       autor: user.autor,
       imagem: user.imagem,
-      admin: user.admin
+      admin: user.admin,
+      history: user.history,
     })
   }
 }

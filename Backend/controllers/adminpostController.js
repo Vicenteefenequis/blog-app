@@ -8,6 +8,7 @@ const adminpostController = {
             description: req.body.description,
             autor: req.body.autor,
             imagem: req.body.imagem,
+            history:req.body.history 
         })
         try {
             const savedPostagem = await posting.save()
@@ -20,7 +21,8 @@ const adminpostController = {
                 const selectedPost = await Postagem.find()    
                 if(!selectedPost) return res.status(400).send('Title not found')
                 return res.send(selectedPost)
-    }
+    },
+  
 }
 
 

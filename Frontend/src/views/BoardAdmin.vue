@@ -27,14 +27,14 @@
               class="form-control"
               name="description"
             />
-            <!-- <label for="email">History</label>
+            <label for="email">History</label>
             <textarea
               v-model="user.history"
               v-validate="'required'"
               type="text"
               class="form-control"
               name="description"
-            ></textarea> -->
+            ></textarea>
             <label for="autor">Autor</label>
               <input
               v-model="user.autor"

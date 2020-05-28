@@ -3,11 +3,13 @@ const app = express();
 require('dotenv').config();
 const userRouter = require('./routes/userRouter')
 const adminRouter = require('./routes/adminRouter')
+const postRouter = require('./routes/postRouter')
 const mongoose = require('mongoose')
 var cors = require('cors')
 
 
 app.use(cors())
+app.use(express.json())
 
 
 mongoose.connect(process.env.MONGO_CONNECTION_URL,
@@ -23,10 +25,11 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL,
     })
 
 
-app.use('/user',express.json(),userRouter)
+app.use('/user',userRouter)
 
+app.use('/post',postRouter)
 
-app.use('/admin',express.json(),adminRouter)
+app.use('/admin',adminRouter)
 
 app.listen(process.env.PORT,(err)=>{
     if(err)
