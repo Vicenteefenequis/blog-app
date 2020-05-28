@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="__posts">
+    <div class="__posts __router">
         <div class="article-content post-page"></div>
         <h1 id="title">{{post.title}}</h1>
         <p class="__description">{{post.description}}</p>
@@ -23,8 +23,7 @@ data () {
     return {
         id: this.$route.params.id,
         post: [],
-        message: []
-
+        message: [],
     }
  },
  mounted() {
@@ -42,9 +41,9 @@ data () {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
 .__posts{
     display: flex;
-    height: 100vh;
     flex-direction: column;
 }
 .__posts img{

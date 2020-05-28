@@ -9,7 +9,15 @@ const postController = {
        }).catch(err => {
            console.log(err)
        })
+    },
+    deletepost: async function(req,res) {
+        const deleted = await Postagem.findOneAndDelete(req.params.id)
+        .then(() => 'List deleted');
+        
+        res.json({deleted});
+        
     }
+   
 }
 
 module.exports = postController;

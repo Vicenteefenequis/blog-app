@@ -70,6 +70,7 @@
       </form>
       <div v-if="currentUser.roles === 'ROLE_USER'">
         <h1 class="text-danger">ACCESS DENIED</h1>
+
       </div>
 
       <div

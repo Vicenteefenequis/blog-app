@@ -15,9 +15,9 @@ export default {
   },
   data() {
     return {
-      content: []
-    };
-  },
+      content: [],
+  }
+},
   mounted() {
     UserService.getPublicContent().then(
       response => {
@@ -33,4 +33,7 @@ export default {
   }
 };
 </script>
+
+
+
 

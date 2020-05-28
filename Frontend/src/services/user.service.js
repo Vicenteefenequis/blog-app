@@ -13,6 +13,9 @@ class UserService {
   getPostById(id){
     return axios.get(API_URL + 'post/' + id)
   }
+  getDeletePostById(id){
+    return axios.delete(API_URL + 'post/' + id )
+  }
 
   // getAdminBoard() {
   //   return axios.get(API_URL + 'admin', { headers: authHeader() });

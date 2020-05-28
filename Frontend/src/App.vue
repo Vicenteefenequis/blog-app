@@ -42,17 +42,22 @@
         </div>
       </nav>
 
-      <div class="container">
+      <div class="container __router">
         <router-view />
       </div>
+      <Footer />
     </div>
  
   </div>
 </template>
 
 <script>
-
+import Footer from './components/Footer'
 export default {
+  name:"App",
+  components:{
+    Footer
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -73,6 +78,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.__router{
+  margin-bottom: 35.6%;
+}
+
+
+</style>
 
 
 

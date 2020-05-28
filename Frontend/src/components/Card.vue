@@ -1,18 +1,27 @@
 <template>
 
 <div class="__wrapper"> 
+  
    <div v-for="contents in content" :key="contents._id" class="__card">
       <div class="card__header" :style="{ 'background-image': 'url(' + contents.imagem + ')' }">
         <span>{{contents.title}}</span>
       </div>
       <div class="card__description">
+        
         <p>{{contents.description}}</p>
         <div class="autordate">
          <p class="autor">{{contents.autor}}-</p>
          <p class="date">{{contents.createdAt.slice(0,10)}}</p>
+      
         </div>
       </div>
+     <button v-if="currentUser.roles === 'ROLE_ADMIN'" class="btn btn-danger myDeleted" @click="deleteUser(contents._id)">
+       
+         <font-awesome-icon icon="trash-alt" />Delete
+
+     </button>
       <a :href="'/post/' + contents._id">
+      
         <button class="learn-more">
            <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
@@ -24,14 +33,29 @@
 </div>
 </template>
 <script>
+import UserService from '../services/user.service';
 export default {
+
     props:{
         content:{
             type:String,
-            default:String
-        }
+            default:String,
+        },
+    },
+    methods:{
+      async deleteUser(id){
+         await  UserService.getDeletePostById(id)
+      }
     }
-}
+    ,
+    computed:{
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  }
+
+
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
@@ -41,7 +65,17 @@ display: grid;
 grid-template-columns: repeat(2,1fr);
 grid-gap: 12px;
 }
-
+.myDeleted{
+  
+  position: absolute;
+  top: 270px;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  border: none;
+  height: 30px;
+  margin-right: 25px;
+}
 
 
 
@@ -126,7 +160,7 @@ span{
 }
 
 
-button {
+.learn-more {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -139,11 +173,11 @@ button {
   font-size: inherit;
   font-family: inherit;
 }
-button.learn-more {
+.learn-more {
   width: 12rem;
   height: auto;
 }
-button.learn-more .circle {
+.learn-more .circle {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: relative;
@@ -155,7 +189,7 @@ button.learn-more .circle {
   background: linear-gradient(-180deg, #58f17b 4%, #16cd6f 93%) no-repeat;
   border-radius: 1.625rem;
 }
-button.learn-more .circle .icon {
+.learn-more .circle .icon {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
@@ -164,7 +198,8 @@ button.learn-more .circle .icon {
   margin: auto;
   background: #fff;
 }
-button.learn-more .circle .icon.arrow {
+
+.learn-more .circle .icon.arrow {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   left: 0.625rem;
@@ -172,7 +207,7 @@ button.learn-more .circle .icon.arrow {
   height: 0.125rem;
   background: none;
 }
-button.learn-more .circle .icon.arrow::before {
+.learn-more .circle .icon.arrow::before {
   position: absolute;
   content: '';
   top: -0.25rem;
@@ -184,7 +219,7 @@ button.learn-more .circle .icon.arrow::before {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
-button.learn-more .button-text {
+.learn-more .button-text {
   -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: absolute;
@@ -200,15 +235,15 @@ button.learn-more .button-text {
   text-align: center;
   text-transform: uppercase;
 }
-button:hover .circle {
+.learn-more:hover .circle {
   width: 100%;
 }
-button:hover .circle .icon.arrow {
+.learn-more:hover .circle .icon.arrow {
   background: #fff;
   -webkit-transform: translate(1rem, 0);
           transform: translate(1rem, 0);
 }
-button:hover .button-text {
+.learn-more:hover .button-text {
   color: #fff;
 }
 
@@ -226,5 +261,6 @@ button:hover .button-text {
     justify-self: center;
   }
 }
+
 
 </style>
